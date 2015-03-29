@@ -6,8 +6,9 @@
 
 - document as intended for putting into core later.
 
-- see code in AuthorityFromModule, and alter that module to use it.
-    and other plugins that use MMD.
+- update other plugins to use us:
+    [CheckSelfDependency]
+    [Test-CheckBreaks]
 
 - future extension - allow swapping out the MMD implementation for a subclass - e.g.
   for Moops scanning, https://github.com/Perl-Toolchain-Gang/Module-Metadata/issues/16
