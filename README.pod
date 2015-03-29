@@ -4,11 +4,11 @@
 
 =head1 NAME
 
-Dist::Zilla::Role::ModuleMetadata - a role for plugins which Module::Metadata
+Dist::Zilla::Role::ModuleMetadata - a role for plugins that use Module::Metadata
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 SYNOPSIS
 
