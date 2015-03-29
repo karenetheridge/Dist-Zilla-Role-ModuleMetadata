@@ -8,31 +8,7 @@ use Test::Deep;
 use Test::Fatal;
 use Path::Tiny;
 
-{
-    package MyTestPlugin;
-    use Moose;
-    with 'Dist::Zilla::Role::MetaProvider',
-        'Dist::Zilla::Role::ModuleMetadata';
-
-    sub metadata {
-        my $self = shift;
-        return +{
-            provides => +{
-                map {
-                    my $file = $_;
-                    my $mmd = $self->module_metadata_for_file($file);
-                    map {
-                        # $modulename => { file => $filename, version => #version }
-                        $_ => +{
-                            file => $file->name,
-                            version => $mmd->version($_),
-                        }
-                    } grep { $_ ne 'main' } $mmd->packages_inside
-                } grep { $_->name =~ /^lib\/.*\.pm$/} @{ $self->zilla->files }
-            },
-        };
-    }
-}
+use lib 't/lib';
 
 my $tzil = Builder->from_config(
     { dist_root => 't/does-not-exist' },
@@ -40,7 +16,7 @@ my $tzil = Builder->from_config(
         add_files => {
             path(qw(source dist.ini)) => simple_ini(
                 [ GatherDir => ],
-                '=MyTestPlugin',
+                '=SimpleProvides',
             ),
             path(qw(source lib Foo.pm)) => <<'FOO',
 package Foo;
