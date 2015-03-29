@@ -1,0 +1,14 @@
+
+- use Const::Fast on the object so it cannot be altered?
+
+- need a way of invalidating a cache entry, and also passing extra options to
+  the MMD constructor -- e.g what if we want collect_pod=>1 and the object is already in the cache?
+
+- document as intended for putting into core later.
+
+- see code in AuthorityFromModule, and alter that module to use it.
+    and other plugins that use MMD.
+
+- future extension - allow swapping out the MMD implementation for a subclass - e.g.
+  for Moops scanning, https://github.com/Perl-Toolchain-Gang/Module-Metadata/issues/16
+

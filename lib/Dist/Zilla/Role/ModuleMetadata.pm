@@ -12,6 +12,7 @@ use namespace::autoclean;
 
 our $VERSION = '0.001';
 
+# filename => md5 content => MMD object
 my %CACHE;
 
 sub module_metadata_for_file
@@ -24,7 +25,7 @@ sub module_metadata_for_file
     # We cache on the MD5 checksum to detect if the file has been modified
     # by some other plugin since it was last parsed, making our object invalid.
     my $md5 = md5($encoded_content);
-    return $CACHE{$md5} if $CACHE{$md5};
+    return $CACHE{$file->name}{$md5} if $CACHE{$file->name}{$md5};
 
     open(
         my $fh,
@@ -32,8 +33,9 @@ sub module_metadata_for_file
         \$encoded_content,
     ) or $self->log_fatal('cannot open handle to ' . $file->name . ' content: ' . $!);
 
+    $self->log_debug([ 'parsing %s for Module::Metadata', $file->name ]);
     my $mmd = Module::Metadata->new_from_handle($fh, $file->name);
-    return ($CACHE{$md5} = $mmd);
+    return ($CACHE{$file->name}{$md5} = $mmd);
 }
 
 1;
