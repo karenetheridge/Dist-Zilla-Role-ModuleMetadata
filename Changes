@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          - include the Module::Metadata version in dumped config metadata,
+            for future debugging purposes
 
 0.001     2015-03-29 21:01:24Z
           - Initial release.

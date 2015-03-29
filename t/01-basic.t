@@ -16,6 +16,7 @@ my $tzil = Builder->from_config(
         add_files => {
             path(qw(source dist.ini)) => simple_ini(
                 [ GatherDir => ],
+                [ MetaConfig => ],
                 '=SimpleProvides',
             ),
             path(qw(source lib Foo.pm)) => <<'FOO',
@@ -57,8 +58,24 @@ cmp_deeply(
                 version => '0.003',
             },
         },
+        x_Dist_Zilla => superhashof({
+            plugins => supersetof(
+                {
+                    class => 'SimpleProvides',
+                    config => {
+                        # 'SimpleProvides' => { }, # if it implemented dump_config
+                        'Dist::Zilla::Role::ModuleMetadata' => {
+                            'Module::Metadata' => Module::Metadata->VERSION,
+                            version => Dist::Zilla::Role::ModuleMetadata->VERSION,
+                        },
+                    },
+                    name => '=SimpleProvides',
+                    version => ignore,
+                },
+            ),
+        }),
     }),
-    'plugin metadata contains data from Module::Metadata object',
+    'plugin metadata contains data from Module::Metadata object, and dumped configs',
 ) or diag 'got distmeta: ', explain $tzil->distmeta;
 
 diag 'got log messages: ', explain $tzil->log_messages

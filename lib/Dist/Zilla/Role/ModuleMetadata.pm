@@ -38,6 +38,19 @@ sub module_metadata_for_file
     return ($CACHE{$file->name}{$md5} = $mmd);
 }
 
+around dump_config => sub
+{
+    my ($orig, $self) = @_;
+    my $config = $self->$orig;
+
+    $config->{+__PACKAGE__} = {
+        'Module::Metadata' => Module::Metadata->VERSION,
+        version => __PACKAGE__->VERSION,
+    };
+
+    return $config;
+};
+
 1;
 __END__
 
