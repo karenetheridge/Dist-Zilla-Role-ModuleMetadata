@@ -8,16 +8,51 @@ use Test::Deep;
 use Test::Fatal;
 use Path::Tiny;
 
+{
+    package MyTestPlugin;
+    use Moose;
+    with 'Dist::Zilla::Role::MetaProvider',
+        'Dist::Zilla::Role::ModuleMetadata';
+
+    sub metadata {
+        my $self = shift;
+        return +{
+            provides => +{
+                map {
+                    my $file = $_;
+                    my $mmd = $self->module_metadata_for_file($file);
+                    map {
+                        # $modulename => { file => $filename, version => #version }
+                        $_ => +{
+                            file => $file->name,
+                            version => $mmd->version($_),
+                        }
+                    } grep { $_ ne 'main' } $mmd->packages_inside
+                } grep { $_->name =~ /^lib\/.*\.pm$/} @{ $self->zilla->files }
+            },
+        };
+    }
+}
+
 my $tzil = Builder->from_config(
     { dist_root => 't/does-not-exist' },
     {
         add_files => {
             path(qw(source dist.ini)) => simple_ini(
                 [ GatherDir => ],
-                [ MetaConfig => ],
-                [ '$zilla_plugin' => ... ],
+                '=MyTestPlugin',
             ),
-            path(qw(source lib Foo.pm)) => "package Foo;\\n1;\\n",
+            path(qw(source lib Foo.pm)) => <<'FOO',
+package Foo;
+our $VERSION = '0.001';
+FOO
+            path(qw(source lib Bar.pm)) => <<'BAR',
+package Bar;
+our $VERSION = '0.002';
+
+package Bar::Baz;
+our $VERSION = '0.003';
+BAR
         },
     },
 );
@@ -32,27 +67,25 @@ is(
 cmp_deeply(
     $tzil->distmeta,
     superhashof({
-        x_Dist_Zilla => superhashof({
-            plugins => supersetof(
-                {
-                    class => 'Dist::Zilla::Plugin::$zilla_plugin',
-                    config => {
-                        'Dist::Zilla::Plugin::$zilla_plugin' => {
-                            ...
-                        },
-                    },
-                    name => '$zilla_plugin',
-                    version => ignore,
-                },
-            ),
-        }),
+        provides => {
+            'Foo' => {
+                file => 'lib/Foo.pm',
+                version => '0.001',
+            },
+            'Bar' => {
+                file => 'lib/Bar.pm',
+                version => '0.002',
+            },
+            'Bar::Baz' => {
+                file => 'lib/Bar.pm',
+                version => '0.003',
+            },
+        },
     }),
-    'plugin metadata, including dumped configs',
+    'plugin metadata contains data from Module::Metadata object',
 ) or diag 'got distmeta: ', explain $tzil->distmeta;
 
 diag 'got log messages: ', explain $tzil->log_messages
     if not Test::Builder->new->is_passing;
-
-fail('this test is TODO!');
 
 done_testing;
