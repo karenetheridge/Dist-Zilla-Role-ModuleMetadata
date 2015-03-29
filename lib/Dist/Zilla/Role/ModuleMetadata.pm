@@ -5,7 +5,7 @@ package Dist::Zilla::Role::ModuleMetadata;
 # KEYWORDS: zilla distribution plugin role metadata cache packages versions
 # vim: set ts=8 sts=4 sw=4 tw=78 et :
 
-our $VERSION = '0.002';
+our $VERSION = '0.003';
 
 use Moose::Role;
 use Module::Metadata 1.000005;

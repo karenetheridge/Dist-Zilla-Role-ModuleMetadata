@@ -1,4 +1,6 @@
-Revision history for Dist-Zilla-Role-ModuleMetadata
+Revision history for {{$dist->name}}
+
+{{$NEXT}}
 
 0.002     2015-03-29 23:05:41Z
           - include the Module::Metadata version in dumped config metadata,
