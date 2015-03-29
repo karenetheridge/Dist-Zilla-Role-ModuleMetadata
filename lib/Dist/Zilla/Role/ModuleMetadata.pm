@@ -5,12 +5,12 @@ package Dist::Zilla::Role::ModuleMetadata;
 # KEYWORDS: zilla distribution plugin role metadata cache packages versions
 # vim: set ts=8 sts=4 sw=4 tw=78 et :
 
+our $VERSION = '0.002';
+
 use Moose::Role;
 use Module::Metadata 1.000005;
 use Digest::MD5 'md5';
 use namespace::autoclean;
-
-our $VERSION = '0.002';
 
 # filename => md5 content => MMD object
 my %CACHE;
