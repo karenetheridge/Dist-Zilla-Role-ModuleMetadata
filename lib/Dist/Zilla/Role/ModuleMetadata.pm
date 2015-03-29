@@ -10,7 +10,7 @@ use Module::Metadata 1.000005;
 use Digest::MD5 'md5';
 use namespace::autoclean;
 
-our $VERSION = '0.001';
+our $VERSION = '0.002';
 
 # filename => md5 content => MMD object
 my %CACHE;
