@@ -1,4 +1,4 @@
-Revision history for {{$dist->name}}
+Revision history for Dist-Zilla-Role-ModuleMetadata
 
-{{$NEXT}}
+0.001     2015-03-29 21:01:24Z
           - Initial release.
