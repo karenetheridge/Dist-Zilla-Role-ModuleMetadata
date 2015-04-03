@@ -23,6 +23,7 @@ my $tzil = Builder->from_config(
             ),
             path(qw(source lib Foo.pm)) => <<'FOO',
 package Foo;
+use utf8;
 our $VERSION = '0.001';
 package Foo::ಠ_ಠ;
 our $VERSION = '0.002';
