@@ -1,4 +1,6 @@
-Revision history for Dist-Zilla-Role-ModuleMetadata
+Revision history for {{$dist->name}}
+
+{{$NEXT}}
 
 0.003     2015-04-03 03:59:41Z
           - fix failing tests on older Dist::Zilla by ensuring that the
