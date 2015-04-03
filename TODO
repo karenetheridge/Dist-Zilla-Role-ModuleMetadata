@@ -9,3 +9,16 @@
 - future extension - allow swapping out the MMD implementation for a subclass - e.g.
   for Moops scanning, https://github.com/Perl-Toolchain-Gang/Module-Metadata/issues/16
 
+- plugins that use MMD:
+http://grep.cpan.me/?q=dist%3A^Dist-Zilla-+Module%3A%3AMetadata
+    https://metacpan.org/release/KENTNL/Dist-Zilla-Plugin-MetaProvides-Package-2.003001
+            https://metacpan.org/release/ETHER/Dist-Zilla-Plugin-EnsurePrereqsInstalled-0.008 (false positive)
+    https://metacpan.org/release/KENTNL/Dist-Zilla-PluginBundle-Author-KENTNL-2.024001
+    https://metacpan.org/release/CJM/Dist-Zilla-Plugins-CJM-4.26
+    https://metacpan.org/release/KENTNL/Dist-Zilla-Plugin-Prereqs-MatchInstalled-1.001002
+    https://metacpan.org/release/KENTNL/Dist-Zilla-App-Command-lsplugins-0.003000
+    https://metacpan.org/release/BBYRD/Dist-Zilla-PluginBundle-Prereqs-0.93
+    https://metacpan.org/release/GETTY/Dist-Zilla-Plugin-AutoModuleShareDirs-0.001
+    https://metacpan.org/release/LEONT/Dist-Zilla-Role-ModuleIncluder-0.004
+    https://metacpan.org/release/KENTNL/Dist-Zilla-Plugin-MetaData-BuiltWith-1.004002
+
