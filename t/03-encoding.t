@@ -9,6 +9,8 @@ use Test::Deep;
 use Test::Fatal;
 use Path::Tiny;
 
+use Test::Requires { 'Dist::Zilla' => '5.000' };
+
 use lib 't/lib';
 
 my $tzil = Builder->from_config(
