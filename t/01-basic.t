@@ -70,7 +70,7 @@ cmp_deeply(
                         },
                     },
                     name => '=SimpleProvides',
-                    version => ignore,
+                    version => undef,
                 },
             ),
         }),
