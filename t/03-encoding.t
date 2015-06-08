@@ -14,7 +14,7 @@ use Test::Requires { 'Dist::Zilla' => '5.000' };
 use lib 't/lib';
 
 my $tzil = Builder->from_config(
-    { dist_root => 't/does-not-exist' },
+    { dist_root => 'does-not-exist' },
     {
         add_files => {
             path(qw(source dist.ini)) => simple_ini(
