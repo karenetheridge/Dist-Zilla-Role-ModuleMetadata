@@ -92,14 +92,6 @@ method returns a L<Module::Metadata> object for that file's content.
 Internally, this method caches these objects. If multiple plugins want an
 object for the same file, this avoids reparsing it.
 
-=head1 SUPPORT
-
-=for stopwords irc
-
-Bugs may be submitted through L<the RT bug tracker|https://rt.cpan.org/Public/Dist/Display.html?Name=Dist-Zilla-Role-ModuleMetadata>
-(or L<bug-Dist-Zilla-Role-ModuleMetadata@rt.cpan.org|mailto:bug-Dist-Zilla-Role-ModuleMetadata@rt.cpan.org>).
-I am also usually active on irc, as 'ether' at C<irc.perl.org>.
-
 =head1 SEE ALSO
 
 =for :list
