@@ -3,7 +3,7 @@ use warnings;
 package Dist::Zilla::Role::ModuleMetadata;
 # ABSTRACT: A role for plugins that use Module::Metadata
 # KEYWORDS: zilla distribution plugin role metadata cache packages versions
-# vim: set ts=8 sts=4 sw=4 tw=78 et :
+# vim: set ts=8 sts=4 sw=4 tw=115 et :
 
 our $VERSION = '0.004';
 
