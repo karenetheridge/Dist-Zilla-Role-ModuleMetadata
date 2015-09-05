@@ -45,7 +45,7 @@ around dump_config => sub
 
     $config->{+__PACKAGE__} = {
         'Module::Metadata' => Module::Metadata->VERSION,
-        version => __PACKAGE__->VERSION,
+        version => $VERSION,
     };
 
     return $config;
