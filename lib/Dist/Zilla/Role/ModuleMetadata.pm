@@ -32,7 +32,7 @@ sub module_metadata_for_file
         my $fh,
         ($file->can('encoding') ? sprintf('<:encoding(%s)', $file->encoding) : '<'),
         \$encoded_content,
-    ) or $self->log_fatal('cannot open handle to ' . $filename . ' content: ' . $!);
+    ) or $self->log_fatal([ 'cannot open handle to %s content: %s', $filename, $! ]);
 
     $self->log_debug([ 'parsing %s for Module::Metadata', $filename ]);
     my $mmd = Module::Metadata->new_from_handle($fh, $filename);
