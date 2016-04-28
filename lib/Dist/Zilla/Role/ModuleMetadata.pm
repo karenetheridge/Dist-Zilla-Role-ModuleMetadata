@@ -1,9 +1,9 @@
 use strict;
 use warnings;
 package Dist::Zilla::Role::ModuleMetadata;
+# vim: set ts=8 sts=4 sw=4 tw=115 et :
 # ABSTRACT: A role for plugins that use Module::Metadata
 # KEYWORDS: zilla distribution plugin role metadata cache packages versions
-# vim: set ts=8 sts=4 sw=4 tw=115 et :
 
 our $VERSION = '0.004';
 
