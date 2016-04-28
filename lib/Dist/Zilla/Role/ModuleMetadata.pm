@@ -25,17 +25,18 @@ sub module_metadata_for_file
     # We cache on the MD5 checksum to detect if the file has been modified
     # by some other plugin since it was last parsed, making our object invalid.
     my $md5 = md5($encoded_content);
-    return $CACHE{$file->name}{$md5} if $CACHE{$file->name}{$md5};
+    my $filename = $file->name;
+    return $CACHE{$filename}{$md5} if $CACHE{$filename}{$md5};
 
     open(
         my $fh,
         ($file->can('encoding') ? sprintf('<:encoding(%s)', $file->encoding) : '<'),
         \$encoded_content,
-    ) or $self->log_fatal('cannot open handle to ' . $file->name . ' content: ' . $!);
+    ) or $self->log_fatal('cannot open handle to ' . $filename . ' content: ' . $!);
 
-    $self->log_debug([ 'parsing %s for Module::Metadata', $file->name ]);
-    my $mmd = Module::Metadata->new_from_handle($fh, $file->name);
-    return ($CACHE{$file->name}{$md5} = $mmd);
+    $self->log_debug([ 'parsing %s for Module::Metadata', $filename ]);
+    my $mmd = Module::Metadata->new_from_handle($fh, $filename);
+    return ($CACHE{$filename}{$md5} = $mmd);
 }
 
 around dump_config => sub
