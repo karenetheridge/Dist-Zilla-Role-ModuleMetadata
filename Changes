@@ -1,6 +1,6 @@
 Revision history for Dist-Zilla-Role-ModuleMetadata
 
-{{$NEXT}}
+0.004     2016-06-21 00:54:35Z
           - added argument validation
 
 0.003     2015-04-03 03:59:41Z
