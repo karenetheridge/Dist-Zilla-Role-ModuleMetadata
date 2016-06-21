@@ -19,6 +19,8 @@ sub module_metadata_for_file
 {
     my ($self, $file) = @_;
 
+    Carp::croak('missing file argument for module_metadata_for_file') if not $file;
+
     # handle dzil v4 files by assuming no (or latin1) encoding
     my $encoded_content = $file->can('encoded_content') ? $file->encoded_content : $file->content;
 
