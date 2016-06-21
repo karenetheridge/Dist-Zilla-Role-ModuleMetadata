@@ -5,7 +5,7 @@ package Dist::Zilla::Role::ModuleMetadata;
 # ABSTRACT: A role for plugins that use Module::Metadata
 # KEYWORDS: zilla distribution plugin role metadata cache packages versions
 
-our $VERSION = '0.004';
+our $VERSION = '0.005';
 
 use Moose::Role;
 use Module::Metadata 1.000005;
