@@ -8,7 +8,7 @@ Dist::Zilla::Role::ModuleMetadata - A role for plugins that use Module::Metadata
 
 =head1 VERSION
 
-version 0.004
+version 0.005
 
 =head1 SYNOPSIS
 
@@ -23,7 +23,7 @@ version 0.004
         my $self = shift;
 
         my $file = ...; # perhaps via the :InstallModules filefinder?
-        my $version = $self->module_metadata_for_file->($file)->version;
+        my $version = $self->module_metadata_for_file->($file, collect_pod => 1)->version;
         ...
     }
 
@@ -36,10 +36,11 @@ plugins which use L<Module::Metadata> and the information that it provides.
 
 =head2 C<module_metadata_for_file>
 
-    my $mmd = $self->module_metadata_for_file($file);
+    my $mmd = $self->module_metadata_for_file($file, @options);
 
 Given a dzil file object (anything that does L<Dist::Zilla::Role::File>), this
-method returns a L<Module::Metadata> object for that file's content.
+method returns a L<Module::Metadata> object for that file's content. Any extra
+arguments are passed along to L<Module::Metadata/new_from_handle>.
 
 =for stopwords reparsing
 
