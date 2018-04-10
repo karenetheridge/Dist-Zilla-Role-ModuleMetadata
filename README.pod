@@ -8,7 +8,7 @@ Dist::Zilla::Role::ModuleMetadata - A role for plugins that use Module::Metadata
 
 =head1 VERSION
 
-version 0.005
+version 0.006
 
 =head1 SYNOPSIS
 
