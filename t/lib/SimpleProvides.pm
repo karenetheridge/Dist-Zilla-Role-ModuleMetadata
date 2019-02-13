@@ -10,14 +10,14 @@ sub metadata {
             map {
                 my $file = $_;
                 my $mmd = $self->module_metadata_for_file($file);
-                map {
+                map
                     # $modulename => { file => $filename, version => version }
-                    $_ => +{
+                    +($_ => +{
                         file => $file->name,
                         version => $mmd->version($_) . '',
-                    }
-                } grep { $_ ne 'main' } $mmd->packages_inside
-            } grep { $_->name =~ /^lib\/.*\.pm$/} @{ $self->zilla->files }
+                    }),
+                    grep $_ ne 'main', $mmd->packages_inside
+            } grep $_->name =~ /^lib\/.*\.pm$/, @{ $self->zilla->files }
         },
     };
 }

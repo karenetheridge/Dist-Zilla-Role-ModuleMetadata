@@ -38,7 +38,7 @@ use Path::Tiny;
     sub gather_files {
         my $self = shift;
 
-        my ($file) = grep { $_->name eq 'Foo.pm' } @{ $self->zilla->files };
+        my ($file) = grep $_->name eq 'Foo.pm', @{ $self->zilla->files };
 
         my $mmd = $self->module_metadata_for_file($file);
         $self->log_debug([ 'got MMD object with refaddr 0x%x for %s', refaddr($mmd), $file->name ]);
@@ -73,7 +73,7 @@ is(
 );
 
 cmp_deeply(
-    [ grep { /^\[=FileMover\]/ } @{ $tzil->log_messages } ],
+    [ grep /^\[=FileMover\]/, @{ $tzil->log_messages } ],
     [
         '[=FileMover] parsing Foo.pm for Module::Metadata',
         re(qr/\Q[=FileMover] got MMD object with refaddr 0x\E[0-9a-f]+ for Foo\.pm/),
